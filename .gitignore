@@ -20,26 +20,20 @@ build/
 env/
 venv/
 
-# Data files — too large for GitHub
-data/raw/*.csv
-data/raw/*.xlsx
-data/processed/*.csv
+# Large M5 raw files
+data/raw/m5_temp/
 
-# Model files — too large for GitHub
-models/*.pkl
-models/tft_model/
-
-# Outputs
-outputs/figures/*.png
-outputs/reports/*.csv
+# Raw data files (regenerate from notebooks)
+data/raw/fred_prices.csv
+data/raw/worldbank_commodities.csv
+data/raw/eia_production.csv
+data/raw/m5_demand.csv
 
 # Streamlit secrets
 .streamlit/secrets.toml
 
 # macOS
 .DS_Store
-.AppleDouble
-.LSOverride
 
 # IDE
 .vscode/
@@ -49,4 +43,3 @@ outputs/reports/*.csv
 
 # Logs
 *.log
-data/raw/m5_temp/
