@@ -83,22 +83,16 @@ def load_all_data():
     def load(path):
         return pd.read_csv(os.path.join(ROOT, path),
                            index_col="date", parse_dates=True).sort_index()
-
     price_train = load("data/processed/features_train_price.csv")
     price_test  = load("data/processed/features_test_price.csv")
-
-    # Raw data files — optional, may not exist on Streamlit Cloud
-    # If missing, create minimal placeholders so the app still runs
-    fred_raw = _safe_load(ROOT, "data/raw/fred_prices.csv")
-    eia_raw  = _safe_load(ROOT, "data/raw/eia_production.csv")
-    wb_raw   = _safe_load(ROOT, "data/raw/worldbank_commodities.csv")
-
-    # SHAP values
-    shap_df = None
+    fred_raw    = load("data/raw/fred_prices.csv").ffill()
+    eia_raw     = load("data/raw/eia_production.csv").ffill()
+    wb_raw      = load("data/raw/worldbank_commodities.csv").ffill()
+    shap_df     = None
     p = os.path.join(ROOT, "outputs/reports/shap_values.csv")
     if os.path.exists(p):
-        shap_df = pd.read_csv(p, index_col="date", parse_dates=True).sort_index()
-
+        shap_df = pd.read_csv(p, index_col="date",
+                              parse_dates=True).sort_index()
     return price_train, price_test, fred_raw, eia_raw, wb_raw, shap_df
 
 
@@ -759,25 +753,16 @@ def main():
     elif page == "📈 Price Forecast":
         render_price_forecast(hist_x, hist_y, fc_x, fc_y, fc_upper, fc_lower, horizon, sig)
     elif page == "🏭 Supply Indicators":
-        if eia_raw.empty:
-            st.info("Supply indicator data is not available in this deployment. "
-                    "Run the app locally with the full dataset to see EIA charts.")
-        else:
-            render_supply_indicators(eia_raw)
+        render_supply_indicators(eia_raw)
 
     elif page == "🌍 Commodity Markets":
-        if fred_raw.empty and wb_raw.empty:
-            st.info("Commodity market data is not available in this deployment. "
-                    "Run the app locally with the full dataset to see commodity charts.")
-        else:
-            render_commodity_markets(fred_raw, wb_raw)
+        render_commodity_markets(fred_raw, wb_raw)
 
     elif page == "📊 Macro Environment":
-        if fred_raw.empty:
-            st.info("Macro indicator data is not available in this deployment. "
-                    "Run the app locally with the full dataset to see macro charts.")
-        else:
-            render_macro_environment(fred_raw)
+        render_macro_environment(fred_raw)
+
+    elif page == "✅ Model Reliability":
+        render_model_reliability(fc_x, fc_y, fc_upper, fc_lower, fc_actual)
 
 
 if __name__ == "__main__":

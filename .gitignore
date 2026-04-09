@@ -20,14 +20,8 @@ build/
 env/
 venv/
 
-# Large M5 raw files
+# Large M5 raw files only
 data/raw/m5_temp/
-
-# Raw data files (regenerate from notebooks)
-data/raw/fred_prices.csv
-data/raw/worldbank_commodities.csv
-data/raw/eia_production.csv
-data/raw/m5_demand.csv
 
 # Streamlit secrets
 .streamlit/secrets.toml
