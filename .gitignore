@@ -49,3 +49,4 @@ outputs/reports/*.csv
 
 # Logs
 *.log
+data/raw/m5_temp/
