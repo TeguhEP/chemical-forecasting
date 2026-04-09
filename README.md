@@ -3,7 +3,8 @@
 A complete end-to-end data science project for **WTI crude oil price forecasting**
 and **weekly demand prediction** for chemical industry procurement and supply chain planning.
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](YOUR_STREAMLIT_URL_HERE)
+[![Procurement Dashboard](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chemical-forecasting.streamlit.app/)
+[![Model Evaluation Dashboard](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chemical-forecasting-eval.streamlit.app/)
 
 ---
 
