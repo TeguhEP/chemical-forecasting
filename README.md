@@ -34,6 +34,7 @@ Demand forecasting: **2.07% CV MAPE** (±0.18% across 5 temporal folds)
 
 ## Project Structure
 
+```
 chemical-forecasting/
 ├── config.py                    # Shared constants and paths
 ├── streamlit_app.py             # Model evaluation dashboard
@@ -53,7 +54,7 @@ chemical-forecasting/
 ├── figures/                 # All charts from notebooks
 └── reports/                 # CSV evaluation reports
 
-
+```
 ---
 
 ---
